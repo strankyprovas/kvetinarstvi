@@ -177,12 +177,12 @@
     .gallery-head { text-align: center; padding: 0 8%; margin-bottom: 3.2rem; }
     .gallery-head .eyebrow { justify-content: center; }
     .gallery-head .eyebrow::before { display: none; }
-    .marquee-wrap { display: flex; flex-direction: column; gap: .8rem; }
-    .marquee-row { display: flex; gap: .8rem; width: max-content; animation: marquee 42s linear infinite; }
-    .marquee-row.reverse { animation-direction: reverse; animation-duration: 52s; }
-    .marquee-row img { width: 320px; height: 220px; object-fit: cover; flex-shrink: 0; border-radius: 12px; transition: transform .4s; }
-    .marquee-row img:hover { transform: scale(1.015); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .mosaic { column-count: 4; column-gap: .7rem; max-width: 1500px; margin: 0 auto; padding: 0 3%; }
+    .mosaic img { width: 100%; margin-bottom: .7rem; border-radius: 10px; display: block;
+      break-inside: avoid; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .mosaic img:hover { transform: scale(1.02); box-shadow: 0 14px 34px rgba(42,34,30,.22); }
+    @media (max-width: 1100px) { .mosaic { column-count: 3; } }
+    @media (max-width: 760px)  { .mosaic { column-count: 2; } }
 
     /* TESTIMONIALS */
     #recenze { background: var(--paper); }
@@ -321,7 +321,7 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-media"><img src="photos/web/svatba-15.jpg" alt="Květiny La Rosa" onerror="this.style.display='none'"></div>
+  <div class="hero-media"><img src="../stock_photos/photo_1.jpg" alt="Květiny La Rosa" onerror="this.style.display='none'"></div>
   <div class="hero-scrim"></div>
   <div class="hero-inner">
     <div class="hero-badge">Nýřany · Květinářství</div>
@@ -454,10 +454,7 @@
     <div class="eyebrow center">Naše květiny</div>
     <h2 class="title">Nahlédněte <em>k nám</em></h2>
   </div>
-  <div class="marquee-wrap">
-    <div class="marquee-row" id="row1"></div>
-    <div class="marquee-row reverse" id="row2"></div>
-  </div>
+  <div class="mosaic" id="mosaic"></div>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -601,9 +598,14 @@ document.querySelectorAll('[data-stat="reviews"]').forEach(item => { const sp=it
 const cntObs = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){ const n=+e.target.dataset.count; if(n) animCount(e.target,n); cntObs.unobserve(e.target); } }); }, {threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
 
-const photos = ['photos/web/kytice-1.jpg','photos/web/kytice-2.jpg','photos/web/kytice-4.jpg','photos/web/kytice-5.jpg','photos/web/kytice-6.jpg','photos/web/kytice-7.jpg','photos/web/kytice-8.jpg','photos/web/kytice-10.jpg','photos/web/kytice-11.jpg','photos/web/kytice-12.jpg','photos/web/kytice-14.jpg','photos/web/kytice-15.jpg','photos/web/kytice-16.jpg','photos/web/boxik-1.jpg','photos/web/boxik-3.jpg','photos/web/boxik-4.jpg','photos/web/boxik-5.jpg','photos/web/boxik-6.jpg','photos/web/boxik-8.jpg','photos/web/boxik-9.jpg','photos/web/boxik-10.jpg','photos/web/boxik-11.jpg','photos/web/boxik-12.jpg','photos/web/boxik-13.jpg','photos/web/boxik-14.jpg','photos/web/boxik-15.jpg','photos/web/boxik-16.jpg','photos/web/svatba-1.jpg','photos/web/svatba-2.jpg','photos/web/svatba-3.jpg','photos/web/svatba-4.jpg','photos/web/svatba-6.jpg','photos/web/svatba-7.jpg','photos/web/svatba-9.jpg','photos/web/svatba-10.jpg','photos/web/svatba-11.jpg','photos/web/svatba-12.jpg','photos/web/svatba-13.jpg','photos/web/svatba-14.jpg','photos/web/svatba-16.jpg'].filter(s => s && s.length);
-const rows = [document.getElementById('row1'), document.getElementById('row2')];
-if(photos.length > 0){ rows.forEach(row => { [...photos,...photos,...photos,...photos].forEach(src => { const img=document.createElement('img'); img.src=src; img.alt='Galerie'; img.loading='lazy'; img.onerror=function(){ this.remove(); }; row.appendChild(img); }); }); }
+const photos = ['photos/web/kytice-1.jpg','photos/web/kytice-2.jpg','photos/web/kytice-3.jpg','photos/web/kytice-4.jpg','photos/web/kytice-5.jpg','photos/web/kytice-6.jpg','photos/web/kytice-7.jpg','photos/web/kytice-8.jpg','photos/web/kytice-9.jpg','photos/web/kytice-10.jpg','photos/web/kytice-11.jpg','photos/web/kytice-12.jpg','photos/web/kytice-13.jpg','photos/web/kytice-14.jpg','photos/web/kytice-15.jpg','photos/web/kytice-16.jpg','photos/web/boxik-1.jpg','photos/web/boxik-2.jpg','photos/web/boxik-3.jpg','photos/web/boxik-4.jpg','photos/web/boxik-5.jpg','photos/web/boxik-6.jpg','photos/web/boxik-7.jpg','photos/web/boxik-8.jpg','photos/web/boxik-9.jpg','photos/web/boxik-10.jpg','photos/web/boxik-11.jpg','photos/web/boxik-12.jpg','photos/web/boxik-13.jpg','photos/web/boxik-14.jpg','photos/web/boxik-15.jpg','photos/web/boxik-16.jpg','photos/web/svatba-1.jpg','photos/web/svatba-2.jpg','photos/web/svatba-3.jpg','photos/web/svatba-4.jpg','photos/web/svatba-5.jpg','photos/web/svatba-6.jpg','photos/web/svatba-7.jpg','photos/web/svatba-8.jpg','photos/web/svatba-9.jpg','photos/web/svatba-10.jpg','photos/web/svatba-11.jpg','photos/web/svatba-12.jpg','photos/web/svatba-13.jpg','photos/web/svatba-14.jpg','photos/web/svatba-15.jpg','photos/web/svatba-16.jpg'].filter(s => s && s.length);
+const mosaic = document.getElementById('mosaic');
+if(photos.length > 0){
+  const groups = {}; photos.forEach(p => { const k = p.split('/').pop().split('-')[0]; (groups[k] = groups[k] || []).push(p); });
+  const keys = Object.keys(groups), mixed = []; let i = 0;
+  while (mixed.length < photos.length) { const g = groups[keys[i % keys.length]]; if (g.length) mixed.push(g.shift()); i++; }
+  mixed.forEach(src => { const img=document.createElement('img'); img.src=src; img.alt='Kytice a vazby \u2013 Kv\u011btiny La Rosa'; img.loading='lazy'; img.onerror=function(){ this.remove(); }; mosaic.appendChild(img); });
+}
 else { document.getElementById('galerie').style.display='none'; }
 
 let cur=0; const track=document.getElementById('test-track'), dots=document.querySelectorAll('.dot'), slides=track.querySelectorAll('.test-slide');
