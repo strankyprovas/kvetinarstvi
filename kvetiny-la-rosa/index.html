@@ -238,7 +238,7 @@
     .gallery-head .eyebrow { justify-content: center; }
     .gallery-head .eyebrow::before { display: none; }
     .mosaic { column-count: 4; column-gap: .7rem; max-width: 1500px; margin: 0 auto; padding: 0 3%; }
-    .mosaic img { width: 100%; margin-bottom: .7rem; border-radius: 10px; display: block;
+    .mosaic img { width: 100%; height: auto; margin-bottom: .7rem; border-radius: 10px; display: block;
       break-inside: avoid; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
     .mosaic img:hover { transform: scale(1.02); box-shadow: 0 14px 34px rgba(42,34,30,.22); }
     @media (max-width: 1100px) { .mosaic { column-count: 3; } }
@@ -700,13 +700,25 @@ document.querySelectorAll('[data-stat="reviews"]').forEach(item => { const sp=it
 const cntObs = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){ const n=+e.target.dataset.count; if(n) animCount(e.target,n); cntObs.unobserve(e.target); } }); }, {threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
 
-const photos = ['photos/web/kytice-1.jpg','photos/web/kytice-2.jpg','photos/web/kytice-3.jpg','photos/web/kytice-4.jpg','photos/web/kytice-5.jpg','photos/web/kytice-6.jpg','photos/web/kytice-7.jpg','photos/web/kytice-8.jpg','photos/web/kytice-9.jpg','photos/web/kytice-10.jpg','photos/web/kytice-11.jpg','photos/web/kytice-12.jpg','photos/web/kytice-13.jpg','photos/web/kytice-14.jpg','photos/web/kytice-15.jpg','photos/web/kytice-16.jpg','photos/web/boxik-1.jpg','photos/web/boxik-2.jpg','photos/web/boxik-3.jpg','photos/web/boxik-4.jpg','photos/web/boxik-5.jpg','photos/web/boxik-6.jpg','photos/web/boxik-7.jpg','photos/web/boxik-8.jpg','photos/web/boxik-9.jpg','photos/web/boxik-10.jpg','photos/web/boxik-11.jpg','photos/web/boxik-12.jpg','photos/web/boxik-13.jpg','photos/web/boxik-14.jpg','photos/web/boxik-15.jpg','photos/web/boxik-16.jpg','photos/web/svatba-1.jpg','photos/web/svatba-2.jpg','photos/web/svatba-3.jpg','photos/web/svatba-4.jpg','photos/web/svatba-5.jpg','photos/web/svatba-6.jpg','photos/web/svatba-7.jpg','photos/web/svatba-8.jpg','photos/web/svatba-9.jpg','photos/web/svatba-10.jpg','photos/web/svatba-11.jpg','photos/web/svatba-12.jpg','photos/web/svatba-13.jpg','photos/web/svatba-14.jpg','photos/web/svatba-15.jpg','photos/web/svatba-16.jpg'].filter(s => s && s.length);
+const photos = [{s:"photos/web/kytice-1.jpg",w:465,h:600}, {s:"photos/web/kytice-2.jpg",w:451,h:600}, {s:"photos/web/kytice-3.jpg",w:617,h:600}, {s:"photos/web/kytice-4.jpg",w:492,h:600}, {s:"photos/web/kytice-5.jpg",w:450,h:600}, {s:"photos/web/kytice-6.jpg",w:485,h:600}, {s:"photos/web/kytice-7.jpg",w:507,h:600}, {s:"photos/web/kytice-8.jpg",w:450,h:600}, {s:"photos/web/kytice-9.jpg",w:541,h:600}, {s:"photos/web/kytice-10.jpg",w:450,h:600}, {s:"photos/web/kytice-11.jpg",w:525,h:600}, {s:"photos/web/kytice-12.jpg",w:450,h:600}, {s:"photos/web/kytice-13.jpg",w:611,h:600}, {s:"photos/web/kytice-14.jpg",w:471,h:600}, {s:"photos/web/kytice-15.jpg",w:579,h:600}, {s:"photos/web/kytice-16.jpg",w:450,h:600}, {s:"photos/web/boxik-1.jpg",w:510,h:600}, {s:"photos/web/boxik-2.jpg",w:611,h:600}, {s:"photos/web/boxik-3.jpg",w:573,h:600}, {s:"photos/web/boxik-4.jpg",w:570,h:600}, {s:"photos/web/boxik-5.jpg",w:483,h:600}, {s:"photos/web/boxik-6.jpg",w:560,h:600}, {s:"photos/web/boxik-7.jpg",w:632,h:600}, {s:"photos/web/boxik-8.jpg",w:612,h:600}, {s:"photos/web/boxik-9.jpg",w:526,h:600}, {s:"photos/web/boxik-10.jpg",w:581,h:600}, {s:"photos/web/boxik-11.jpg",w:487,h:600}, {s:"photos/web/boxik-12.jpg",w:538,h:600}, {s:"photos/web/boxik-13.jpg",w:480,h:600}, {s:"photos/web/boxik-14.jpg",w:526,h:600}, {s:"photos/web/boxik-15.jpg",w:531,h:600}, {s:"photos/web/boxik-16.jpg",w:505,h:600}, {s:"photos/web/svatba-1.jpg",w:645,h:600}, {s:"photos/web/svatba-2.jpg",w:594,h:600}, {s:"photos/web/svatba-3.jpg",w:536,h:600}, {s:"photos/web/svatba-4.jpg",w:598,h:600}, {s:"photos/web/svatba-5.jpg",w:625,h:600}, {s:"photos/web/svatba-6.jpg",w:471,h:600}, {s:"photos/web/svatba-7.jpg",w:576,h:600}, {s:"photos/web/svatba-8.jpg",w:613,h:600}, {s:"photos/web/svatba-9.jpg",w:608,h:600}, {s:"photos/web/svatba-10.jpg",w:453,h:459}, {s:"photos/web/svatba-11.jpg",w:610,h:600}, {s:"photos/web/svatba-12.jpg",w:492,h:600}, {s:"photos/web/svatba-13.jpg",w:495,h:600}, {s:"photos/web/svatba-14.jpg",w:510,h:600}, {s:"photos/web/svatba-15.jpg",w:639,h:600}, {s:"photos/web/svatba-16.jpg",w:606,h:600}];
 const mosaic = document.getElementById('mosaic');
-if(photos.length > 0){
-  const groups = {}; photos.forEach(p => { const k = p.split('/').pop().split('-')[0]; (groups[k] = groups[k] || []).push(p); });
+if (photos.length > 0) {
+  // prostřídat kategorie, ať vedle sebe nestojí samé kytice
+  const groups = {}; photos.forEach(p => { const k = p.s.split('/').pop().split('-')[0]; (groups[k] = groups[k] || []).push(p); });
   const keys = Object.keys(groups), mixed = []; let i = 0;
   while (mixed.length < photos.length) { const g = groups[keys[i % keys.length]]; if (g.length) mixed.push(g.shift()); i++; }
-  mixed.forEach(src => { const img=document.createElement('img'); img.src=src; img.alt='Kytice a vazby \u2013 Kv\u011btiny La Rosa'; img.loading='lazy'; img.onerror=function(){ this.remove(); }; mosaic.appendChild(img); });
+  const frag = document.createDocumentFragment();
+  mixed.forEach(p => {
+    const img = document.createElement('img');
+    img.src = p.s;
+    img.width = p.w; img.height = p.h;      // rezervace místa -> mozaika se nepřepočítává
+    img.alt = 'Kytice a vazby \u2013 Kv\u011btiny La Rosa';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.onerror = function () { this.remove(); };
+    frag.appendChild(img);
+  });
+  mosaic.appendChild(frag);                  // jedno vložení místo 48
 }
 else { document.getElementById('galerie').style.display='none'; }
 
