@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zahradnictví SINCO – květinářství Mělník</title>
+<meta name="description" content="Kytice, které potěší srdce — Zahradnictví SINCO Mělník. Ruční vazba z čerstvých květin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --list:#3f5340;     /* list */
+  --stonek:#2b3a2c;   /* stonek */
+  --ruz:#c08585;      /* pudrová růžová */
+  --pudr:#f2e6e3;     /* pudr */
+  --krem:#faf7f2;     /* krém */
+  --bila:#fffdfb;
+  --seda:#6f6a64;
+  --linka:#e7e0d6;
+  --stin:0 18px 50px rgba(43,58,44,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bila);color:var(--stonek);line-height:1.75;overflow-x:hidden;padding-top:38px}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:500;line-height:1.18}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.sec{padding:115px 0}
+.sec-alt{background:var(--krem)}
+
+#ukazka-banner{position:fixed;top:0;left:0;width:100%;background:var(--pudr);color:var(--stonek);text-align:center;padding:10px;font-size:14px;font-weight:600;z-index:9999;box-sizing:border-box}
+#progress{position:fixed;top:38px;left:0;height:3px;width:100%;background:var(--ruz);transform:scaleX(0);transform-origin:0 50%;z-index:9998}
+
+/* --- nav --- */
+#navbar{position:fixed;top:38px;left:0;width:100%;z-index:9000;padding:22px 0;transition:.3s;background:transparent}
+#navbar.scrolled{background:rgba(255,253,251,.96);box-shadow:0 2px 22px rgba(43,58,44,.07);padding:13px 0}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:500;text-decoration:none;color:var(--list);letter-spacing:.01em}
+.nav-logo span{color:var(--ruz)}
+.nav-links{display:flex;gap:34px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;font-size:.95rem;font-weight:400;color:var(--stonek);transition:.2s}
+.nav-links a:hover{color:var(--ruz)}
+.nav-tel{background:var(--list);color:var(--bila)!important;padding:11px 25px;border-radius:999px;font-weight:500}
+.ham{display:none;background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--list)}
+#mobile-nav{position:fixed;inset:0;background:var(--stonek);z-index:9500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transform:translateY(-100%);transition:.35s}
+#mobile-nav.open{transform:translateY(0)}
+#mobile-nav a{color:var(--krem);font-family:'Playfair Display',serif;font-size:1.8rem;text-decoration:none}
+#close-nav{position:absolute;top:24px;right:28px;background:none;border:0;color:var(--krem);font-size:2.2rem;cursor:pointer}
+
+/* --- hero --- */
+#hero{position:relative;padding:150px 0 100px;background:
+  radial-gradient(90% 80% at 15% 10%, rgba(242,230,227,.7) 0%, rgba(242,230,227,0) 55%), var(--bila)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.hero-badge{display:inline-block;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ruz);font-weight:500;margin-bottom:24px}
+#hero h1{font-size:clamp(2.7rem,5.4vw,4.5rem);letter-spacing:-.01em;margin-bottom:24px}
+#hero h1 em{font-style:italic;color:var(--ruz)}
+.hero-sub{font-size:1.13rem;color:var(--seda);max-width:500px;margin-bottom:34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 34px;border-radius:999px;text-decoration:none;font-weight:500;font-size:1rem;transition:.25s;border:1.5px solid transparent}
+.btn-prim{background:var(--list);color:var(--bila)}
+.btn-prim:hover{background:var(--stonek)}
+.btn-ghost{border-color:var(--list);color:var(--list)}
+.btn-ghost:hover{background:var(--list);color:var(--bila)}
+.hero-media{position:relative}
+.hero-media img{width:100%;height:580px;object-fit:cover;border-radius:290px 290px 8px 8px;box-shadow:var(--stin)}
+
+/* --- pásek --- */
+.pasek{background:var(--list);color:var(--krem)}
+.pasek-in{display:grid;grid-template-columns:repeat(3,1fr)}
+.pasek-i{padding:34px 28px;text-align:center;border-right:1px solid rgba(250,247,242,.15)}
+.pasek-i:last-child{border-right:0}
+.pasek-i strong{display:block;font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:4px}
+.pasek-i span{font-size:.9rem;opacity:.75}
+
+/* --- o nás --- */
+.onas-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.onas-img img{width:100%;height:540px;object-fit:cover;border-radius:8px 8px 240px 240px}
+.oko{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ruz);font-weight:500;margin-bottom:16px;display:block}
+.sec h2{font-size:clamp(2rem,3.6vw,2.95rem);margin-bottom:22px}
+.sec p.lead{color:var(--seda);font-size:1.05rem;margin-bottom:18px}
+.stat-radek{display:flex;gap:44px;margin-top:34px;padding-top:28px;border-top:1px solid var(--linka)}
+.stat b{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--list);display:block;line-height:1}
+.stat span{font-size:.86rem;color:var(--seda)}
+
+/* --- SIGNATURE 1: příležitosti --- */
+.prilez{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:54px}
+.prilez-k{background:var(--bila);border:1px solid var(--linka);border-radius:8px;padding:38px 34px;transition:.3s;position:relative;overflow:hidden}
+.prilez-k::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--ruz);opacity:0;transition:.3s}
+.prilez-k:hover{box-shadow:var(--stin);transform:translateY(-3px)}
+.prilez-k:hover::before{opacity:1}
+.prilez-k .cis{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--ruz);display:block;margin-bottom:10px}
+.prilez-k h3{font-size:1.5rem;margin-bottom:10px}
+.prilez-k p{color:var(--seda);font-size:.98rem}
+
+/* --- SIGNATURE 2: sezóna --- */
+.sezona{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:54px;border:1px solid var(--linka);border-radius:8px;overflow:hidden}
+.sez-i{padding:36px 26px;border-right:1px solid var(--linka);background:var(--bila);transition:.3s}
+.sez-i:last-child{border-right:0}
+.sez-i:hover{background:var(--pudr)}
+.sez-i h4{font-size:1.25rem;margin-bottom:8px;color:var(--list)}
+.sez-i .mes{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ruz);display:block;margin-bottom:14px}
+.sez-i p{font-size:.94rem;color:var(--seda);line-height:1.65}
+
+/* --- special --- */
+#special{position:relative;padding:125px 0;background:var(--stonek);color:var(--krem);background-size:cover;background-position:center}
+#special::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,58,44,.93) 0%,rgba(43,58,44,.7) 100%)}
+#special .wrap{position:relative;z-index:1;max-width:660px}
+#special h2{color:var(--krem)}
+#special p{opacity:.86;margin-bottom:28px}
+
+/* --- galerie --- */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:48px}
+.gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;transition:.35s;cursor:pointer}
+.gal img:hover{transform:scale(1.03)}
+
+/* --- recenze --- */
+.test-wrap{max-width:760px;margin:52px auto 0;overflow:hidden;position:relative}
+#test-track{display:flex;transition:transform .5s ease}
+.test-i{min-width:100%;text-align:center;padding:0 18px}
+.test-i p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;line-height:1.6;margin-bottom:20px}
+.test-i cite{font-style:normal;font-size:.9rem;color:var(--seda)}
+.hvezdy{color:var(--ruz);letter-spacing:3px;margin-bottom:18px}
+#test-dots{display:flex;gap:9px;justify-content:center;margin-top:28px}
+#test-dots button{width:9px;height:9px;border-radius:50%;border:0;background:var(--linka);cursor:pointer;padding:0}
+#test-dots button.on{background:var(--list);width:26px;border-radius:5px}
+
+/* --- kontakt --- */
+.kont-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.kont-i{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--linka)}
+.kont-i:last-child{border-bottom:0}
+.kont-i .ik{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:var(--pudr);color:var(--list);display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.kont-i strong{display:block;font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--seda);margin-bottom:2px}
+.map-wrap{margin-top:30px;border-radius:8px;overflow:hidden;height:260px}
+.map-wrap iframe{width:100%;height:100%;border:0}
+.form-g{margin-bottom:16px}
+.form-g label{display:block;font-size:.82rem;font-weight:500;margin-bottom:6px}
+.form-g input,.form-g textarea{width:100%;padding:13px 15px;border:1px solid var(--linka);border-radius:6px;font-family:inherit;font-size:.95rem;background:var(--bila)}
+.form-g textarea{min-height:120px;resize:vertical}
+.form-submit{width:100%;padding:15px;background:var(--list);color:var(--bila);border:0;border-radius:999px;font-family:inherit;font-weight:500;font-size:1rem;cursor:pointer}
+.form-submit:hover{background:var(--stonek)}
+
+/* --- footer --- */
+footer{background:var(--stonek);color:var(--krem);padding:72px 0 28px}
+.footer-grid{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.6rem;text-decoration:none;color:var(--krem)}
+.footer-logo span{color:var(--ruz)}
+.footer-brand p{opacity:.72;font-size:.95rem;margin-top:12px;max-width:330px}
+.footer-col h4{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;color:var(--pudr)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:9px}
+.footer-col a{color:var(--krem);opacity:.75;text-decoration:none;font-size:.94rem}
+.footer-col a:hover{opacity:1}
+.footer-bottom{max-width:1180px;margin:44px auto 0;padding:22px 24px 0;border-top:1px solid rgba(250,247,242,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:.86rem;opacity:.65}
+.footer-copy a{color:var(--pudr)}
+
+#back-top{position:fixed;right:26px;bottom:26px;width:46px;height:46px;border-radius:50%;border:0;background:var(--list);color:var(--bila);font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;z-index:8000}
+#back-top.show{opacity:1;pointer-events:auto}
+
+[data-r]{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+[data-r].vis{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .hero-grid,.onas-grid,.kont-grid{grid-template-columns:1fr;gap:40px}
+  .hero-media img{height:400px;border-radius:200px 200px 8px 8px}
+  .prilez{grid-template-columns:1fr}
+  .sezona{grid-template-columns:1fr}
+  .sez-i{border-right:0;border-bottom:1px solid var(--linka)}
+  .pasek-in{grid-template-columns:1fr}
+  .pasek-i{border-right:0;border-bottom:1px solid rgba(250,247,242,.15)}
+  .nav-links{display:none}
+  .ham{display:block}
+  .footer-grid{grid-template-columns:1fr}
+  .sec{padding:78px 0}
+  .stat-radek{gap:26px;flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  [data-r]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="ukazka-banner">⚡ UKÁZKA – finální web bude s vašimi fotkami a texty</div>
+<div id="progress"></div>
+
+<nav id="navbar">
+  <div class="wrap nav-in">
+    <a href="#" class="nav-logo">Zahradnictví SINCO<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#prilezitosti">Příležitosti</a></li>
+      <li><a href="#sezona">Sezóna</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="tel:+420 315 670 179" class="nav-tel">+420 315 670 179</a></li>
+    </ul>
+    <button class="ham" id="ham" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div id="mobile-nav">
+  <button id="close-nav" aria-label="Zavřít">×</button>
+  <a href="#onas">O nás</a>
+  <a href="#prilezitosti">Příležitosti</a>
+  <a href="#sezona">Sezóna</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="tel:+420 315 670 179">+420 315 670 179</a>
+</div>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="wrap hero-grid">
+    <div data-r>
+      <span class="hero-badge">Květinářství Mělník</span>
+      <h1>Kytice, které potěší srdce</h1>
+      <p class="hero-sub">Čerstvé řezané květiny, originální vazby a rozvoz až k vám domů.</p>
+      <div class="hero-cta">
+        <a href="#prilezitosti" class="btn btn-prim">Co pro vás uvážeme</a>
+        <a href="tel:+420 315 670 179" class="btn btn-ghost">Zavolat</a>
+      </div>
+    </div>
+    <div class="hero-media" data-r>
+      <img src="../stock_photos/photo_1.jpg" alt="Zahradnictví SINCO" onerror="this.style.display='none'">
+    </div>
+  </div>
+</header>
+
+<!-- PÁSEK -->
+<section class="pasek">
+  <div class="wrap pasek-in">
+    <div class="pasek-i"><strong>Čerstvé květiny</strong><span>Vazba na počkání</span></div>
+    <div class="pasek-i"><strong>Poradíme s výběrem</strong><span>Řekněte nám příležitost</span></div>
+    <div class="pasek-i"><strong>Mělník</strong><span>Jsme kousek od vás</span></div>
+  </div>
+</section>
+
+<!-- O NÁS -->
+<section class="sec" id="onas">
+  <div class="wrap onas-grid">
+    <div data-r>
+      <span class="oko">O nás</span>
+      <h2>Kytice, která řekne to, co se špatně říká</h2>
+      <p class="lead">V našem květinářství najdete čerstvé květiny, svatební i smuteční vazby a dárkové kytice na míru. Každou vazbu tvoříme s citem a péčí, aby udělala radost obdarovanému i vám.</p>
+      <div class="stat-radek">
+        <div class="stat" id="stat-hodnoceni"><b>4.7</b><span>hodnocení na Googlu</span></div>
+        <div class="stat" id="stat-recenze"><b>163</b><span>spokojených zákazníků</span></div>
+      </div>
+    </div>
+    <div class="onas-img" data-r>
+      <img src="../stock_photos/photo_2.jpg" alt="Zahradnictví SINCO" onerror="this.style.visibility='hidden'">
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 1: PŘÍLEŽITOSTI -->
+<section class="sec sec-alt" id="prilezitosti">
+  <div class="wrap">
+    <div style="max-width:640px" data-r>
+      <span class="oko">Příležitosti</span>
+      <h2>Ke každé příležitosti se hodí něco jiného</h2>
+      <p class="lead">Nemusíte vědět, jaké květiny chcete. Stačí říct, o co jde a pro koho — zbytek vymyslíme za vás.</p>
+    </div>
+    <div class="prilez">
+      <div class="prilez-k" data-r>
+        <span class="cis">01</span>
+        <h3>Svatby a oslavy</h3>
+        <p>Svatební kytice, korsáže, výzdoba stolů i obřadu. Domluvíme se dopředu a sladíme barvy s tím, jak má den vypadat.</p>
+      </div>
+      <div class="prilez-k" data-r>
+        <span class="cis">02</span>
+        <h3>Dárek a poděkování</h3>
+        <p>Narozeniny, výročí, „jen tak". Uvážeme kytici na počkání a poradíme, co se k dané osobě hodí.</p>
+      </div>
+      <div class="prilez-k" data-r>
+        <span class="cis">03</span>
+        <h3>Smuteční vazba</h3>
+        <p>Věnce, kytice a smuteční vazba s citem a bez zbytečných dotazů. Postaráme se o to rychle a důstojně.</p>
+      </div>
+      <div class="prilez-k" data-r>
+        <span class="cis">04</span>
+        <h3>Firmy a pravidelná vazba</h3>
+        <p>Květiny do recepce, na provozovnu nebo ke stálým příležitostem. Domluvíme se na pravidelném rytmu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 2: SEZÓNA -->
+<section class="sec" id="sezona">
+  <div class="wrap">
+    <div style="max-width:640px" data-r>
+      <span class="oko">Sezóna</span>
+      <h2>Co u nás najdete v průběhu roku</h2>
+      <p class="lead">Nejhezčí kytice vzniknou z toho, co je zrovna v sezóně. Konkrétní nabídku vám rádi řekneme po telefonu.</p>
+    </div>
+    <div class="sezona">
+      <div class="sez-i" data-r><span class="mes">Březen – květen</span><h4>Jaro</h4>
+        <p>Tulipány, narcisy, hyacinty a první pivoňky. Období, kdy je všechno barevné a voní to po zahradě.</p></div>
+      <div class="sez-i" data-r><span class="mes">Červen – srpen</span><h4>Léto</h4>
+        <p>Pivoňky, růže, slunečnice a letničky. Hlavní svatební sezóna, na kterou je dobré myslet s předstihem.</p></div>
+      <div class="sez-i" data-r><span class="mes">Září – listopad</span><h4>Podzim</h4>
+        <p>Jiřiny, chryzantémy a sušené vazby. Čas dušiček, věnců a teplých barev.</p></div>
+      <div class="sez-i" data-r><span class="mes">Prosinec – únor</span><h4>Zima</h4>
+        <p>Adventní věnce, vánoční vazba, amarylky a jarní cibuloviny napřed. Kus jara doma dřív, než přijde.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL -->
+<section id="special">
+  <div class="wrap" data-r>
+    <span class="oko">Na objednávku</span>
+    <h2>Řekněte nám příležitost, zbytek je na nás</h2>
+    <p>Svatba, výročí nebo smuteční obřad — u větších vazeb se ozvěte pár dní dopředu, ať máme čas sehnat přesně to, co si představujete.</p>
+    <a href="tel:+420 315 670 179" class="btn btn-prim">Domluvit objednávku</a>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="sec sec-alt" id="galerie">
+  <div class="wrap">
+    <div style="max-width:640px" data-r>
+      <span class="oko">Galerie</span>
+      <h2>Z naší práce</h2>
+    </div>
+    <div class="gal" id="gal-grid"></div>
+  </div>
+</section>
+
+<!-- RECENZE -->
+<section class="sec" id="recenze">
+  <div class="wrap">
+    <div style="max-width:640px;margin:0 auto;text-align:center" data-r>
+      <span class="oko">Ohlasy</span>
+      <h2>Co říkají zákazníci</h2>
+    </div>
+    <div class="test-wrap">
+      <div id="test-track">
+        <div class="test-i"><div class="hvezdy">★★★★★</div>
+          <p>„Svatební kytice byla přesně podle představ a ještě hezčí, než jsem doufala. Květiny vydržely celý víkend."</p>
+          <cite>Zákaznice · Mělník</cite></div>
+        <div class="test-i"><div class="hvezdy">★★★★★</div>
+          <p>„Přišel jsem na poslední chvíli bez nápadu a odešel s kyticí, ze které měla maminka slzy v očích."</p>
+          <cite>Zákazník · Mělník</cite></div>
+        <div class="test-i"><div class="hvezdy">★★★★★</div>
+          <p>„Smuteční vazbu vyřídili rychle a s obrovským citem. V takové chvíli to člověk ocení nejvíc."</p>
+          <cite>Zákaznice · Mělník</cite></div>
+      </div>
+      <div id="test-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="sec sec-alt" id="kontakt">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:50px" data-r>
+      <span class="oko">Kontakt</span>
+      <h2>Zastavte se u nás</h2>
+    </div>
+    <div class="kont-grid">
+      <div data-r>
+        <div class="kont-i"><div class="ik">📍</div><div><strong>Kde nás najdete</strong>K Přívozu 3932, Mělník</div></div>
+        <div class="kont-i"><div class="ik">📞</div><div><strong>Telefon</strong><a href="tel:+420 315 670 179" style="text-decoration:none">+420 315 670 179</a></div></div>
+        <div class="kont-i"><div class="ik">✉️</div><div><strong>E-mail</strong><a href="mailto:mail@zahrsinco.cz" style="text-decoration:none">mail@zahrsinco.cz</a></div></div>
+        <div class="map-wrap"><iframe src="https://maps.google.com/maps?q=K+P%C5%99%C3%ADvozu+3932%2C+M%C4%9Bln%C3%ADk&output=embed" allowfullscreen loading="lazy" title="Mapa – Zahradnictví SINCO"></iframe></div>
+      </div>
+      <div data-r>
+        <form onsubmit="return false;">
+          <div class="form-g"><label>Jméno</label><input type="text" placeholder="Vaše jméno"></div>
+          <div class="form-g"><label>Telefon</label><input type="tel" placeholder="Číslo, kam se ozveme"></div>
+          <div class="form-g"><label>Zpráva</label><textarea placeholder="Jaká příležitost, pro koho a kdy to potřebujete…"></textarea></div>
+          <button type="submit" class="form-submit">Odeslat zprávu</button>
+        </form>
+      </div>
+    </div>
+    <div style="text-align:center;margin:3rem 0 0;">
+      <a href="mailto:matyas.vrbaa@gmail.com?subject=Mám zájem o web – Zahradnictví SINCO" style="display:inline-block;background:var(--list);color:var(--bila);border-radius:999px;padding:15px 40px;font-size:17px;text-decoration:none;font-weight:600;">Chci takový web</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Zahradnictví SINCO<span>.</span></a>
+      <p>Ruční vazba z čerstvých květin.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Květinářství</h4>
+      <ul>
+        <li><a href="#onas">O nás</a></li>
+        <li><a href="#prilezitosti">Příležitosti</a></li>
+        <li><a href="#sezona">Sezóna</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="#">K Přívozu 3932</a></li>
+        <li><a href="tel:+420 315 670 179">+420 315 670 179</a></li>
+        <li><a href="mailto:mail@zahrsinco.cz">mail@zahrsinco.cz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Zahradnictví SINCO · Vytvořeno s ❤️ od <a href="https://strankyprovas.cz">StránkyProVás</a></p>
+    <p class="footer-copy">Všechna práva vyhrazena</p>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
+
+<script>
+(function(){ var img=new Image(); img.onload=function(){ var s=document.getElementById('special'); if(s) s.style.backgroundImage="url('../stock_photos/photo_3.jpg')"; }; img.src='../stock_photos/photo_3.jpg'; })();
+
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - innerHeight;
+  var p = document.getElementById('progress');
+  if (p && h > 0) p.style.transform = 'scaleX(' + (scrollY / h) + ')';
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
+  document.getElementById('back-top').classList.toggle('show', scrollY > 420);
+}, {passive:true});
+
+var ham = document.getElementById('ham'), mnav = document.getElementById('mobile-nav');
+ham.addEventListener('click', function(){ mnav.classList.add('open'); });
+document.getElementById('close-nav').addEventListener('click', function(){ mnav.classList.remove('open'); });
+mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mnav.classList.remove('open'); }); });
+
+var obs = new IntersectionObserver(function(es){
+  es.forEach(function(e,i){ if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('vis'); }, i*70); obs.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('[data-r]').forEach(function(el){ obs.observe(el); });
+
+(function(){
+  var h = document.querySelector('#stat-hodnoceni b'), r = document.querySelector('#stat-recenze b');
+  if (h && (!h.textContent.trim() || h.textContent.trim() === '0')) document.getElementById('stat-hodnoceni').style.display = 'none';
+  if (r && (!r.textContent.trim() || r.textContent.trim() === '0')) document.getElementById('stat-recenze').style.display = 'none';
+})();
+
+(function(){
+  var photos = ['../stock_photos/photo_1.jpg','../stock_photos/photo_2.jpg','../stock_photos/photo_3.jpg','../stock_photos/photo_4.jpg','../stock_photos/photo_5.jpg'].filter(function(s){ return s && s.length; });
+  var grid = document.getElementById('gal-grid');
+  if (!photos.length) { document.getElementById('galerie').style.display = 'none'; return; }
+  photos.forEach(function(src){
+    var im = document.createElement('img');
+    im.src = '../stock_photos/' + src;
+    im.alt = 'Zahradnictví SINCO';
+    im.loading = 'lazy';
+    im.onerror = function(){ this.remove(); if (!grid.children.length) document.getElementById('galerie').style.display = 'none'; };
+    grid.appendChild(im);
+  });
+})();
+
+(function(){
+  var track = document.getElementById('test-track'), dots = document.getElementById('test-dots');
+  if (!track) return;
+  var n = track.children.length, i = 0;
+  for (var k = 0; k < n; k++) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Recenze ' + (k+1));
+    b.addEventListener('click', (function(idx){ return function(){ jdi(idx); }; })(k));
+    dots.appendChild(b);
+  }
+  function jdi(x){ i = x; track.style.transform = 'translateX(-' + (i*100) + '%)';
+    Array.prototype.forEach.call(dots.children, function(d, di){ d.classList.toggle('on', di === i); }); }
+  jdi(0);
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(function(){ jdi((i+1) % n); }, 6000);
+  }
+})();
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
